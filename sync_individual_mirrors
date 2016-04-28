@@ -1,0 +1,5 @@
+naviseccli -h 192.168.104.22 mirror -async -list -faulted | grep  -B1 "MirrorView Faulted:  YES" |grep -v  Faulted  | awk  '{print $NF}' | sort | uniq | grep -v "\-\-" > faulted_mirrors
+0> mirror_image
+cat  faulted_mirrors | while read  MV; do images_uid=`naviseccli -h 192.168.104.22 mirror -async -list -name $MV | grep "Image UID" | tail -1  | awk '{print $NF}'`; echo -e $MV '\t' $images_uid >>  mirror_image; done
+cat mirror_image | while read  MV images_uid ; do naviseccli -h 192.168.104.22 mirror -async -syncimage -name $MV  -imageuid $images_uid -o; done
+
