@@ -29,5 +29,3 @@ function Add-multiAdminUsers  ( [string] $computerName, [string] $dir)
 		Add-userAdminGroup  -user $user -computerName $computerName 
 	}
 }	
-
-# Testing changes from git lab
