@@ -29,3 +29,5 @@ function Add-multiAdminUsers  ( [string] $computerName, [string] $dir)
 		Add-userAdminGroup  -user $user -computerName $computerName 
 	}
 }	
+
+# Adding a new branch feature
